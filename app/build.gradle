@@ -1,0 +1,124 @@
+apply plugin: 'com.android.application'
+
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+def appVersionCode = versionMajor * 1000 + versionMinor * 100 + versionPatch * 10 + versionBuild
+def appVersionName = "${versionMajor}.${versionMinor}.${versionPatch}"
+
+def appPackageName = "xyz.dokup.talknotifier"
+def appMinSdkVersion = 21
+def appTargetSdkVersion = 26
+
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+    defaultConfig {
+        applicationId appPackageName
+        minSdkVersion appMinSdkVersion
+        targetSdkVersion appTargetSdkVersion
+        versionCode appVersionCode
+        versionName appVersionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+        exclude 'META-INF/rxjava.properties'
+    }
+    signingConfigs {
+        debug {
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+        }
+    }
+    buildTypes {
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix '-dev'
+            signingConfig signingConfigs.debug
+        }
+        release {
+            minifyEnabled true
+            shrinkResources false
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            proguardFile file('proguard-rules.pro')
+            jniDebuggable false
+            renderscriptDebuggable false
+            signingConfig signingConfigs.release
+        }
+    }
+    flavorDimensions "default"
+    productFlavors {
+        develop {
+            dimension "default"
+            applicationId "${appPackageName}.develop"
+        }
+        staging {
+            dimension "default"
+            applicationId "${appPackageName}.staging"
+        }
+        production {
+            dimension "default"
+            applicationId "${appPackageName}"
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:${supportLibraryVersion}"
+    implementation "com.android.support:design:${supportLibraryVersion}"
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    kapt "com.android.databinding:compiler:3.0.0"
+
+    // dagger
+    implementation 'com.google.dagger:dagger:2.13'
+    // rxjava
+    implementation "io.reactivex.rxjava2:rxjava:2.1.5"
+    // rxandroid
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    // timber
+    implementation 'com.jakewharton.timber:timber:4.5.1'
+    // orma
+    implementation 'com.github.gfx.android.orma:orma:4.2.5'
+    // threetenabp
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.0.5'
+    // retrofit
+    compile 'com.squareup.retrofit2:retrofit:2.3.0'
+    // okhttp
+    compile 'com.squareup.okhttp3:okhttp:3.9.0'
+    // gson
+    compile 'com.google.code.gson:gson:2.8.2'
+
+    // kapt libraries
+    kapt 'com.github.gfx.android.orma:orma-processor:4.2.5'
+    kapt 'com.google.dagger:dagger-compiler:2.13'
+
+    provided 'javax.annotation:jsr250-api:1.0'
+}
