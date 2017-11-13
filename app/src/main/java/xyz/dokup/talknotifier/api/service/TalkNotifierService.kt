@@ -17,7 +17,7 @@ interface TalkNotifierService {
     @GET("api/event/{event_id}/talk")
     fun getTalks(@Path("event_id") eventId: Int): Single<List<Talk>>
 
-    @GET("api/connect{event_id}/{talk_id}")
+    @GET("api/connect/{event_id}/{talk_id}")
     fun connection(@Path("event_id") eventId: Int, @Path("talk_id") talkId: Int): Single<Talk>
 
 

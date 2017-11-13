@@ -2,6 +2,7 @@ package xyz.dokup.talknotifier.view.util
 
 import android.content.Context
 import android.content.Intent
+import xyz.dokup.talknotifier.view.activity.ListingActivity
 import xyz.dokup.talknotifier.view.activity.MainActivity
 import xyz.dokup.talknotifier.view.activity.base.BaseActivity
 
@@ -10,7 +11,7 @@ import xyz.dokup.talknotifier.view.activity.base.BaseActivity
  */
 enum class Page(private val target: Class<out BaseActivity>) {
     MAIN(MainActivity::class.java),
-    LISTING(MainActivity::class.java);
+    LISTING(ListingActivity::class.java);
 
     open fun intent(context: Context) = Intent(context, target)
 }

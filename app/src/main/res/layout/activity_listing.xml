@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="viewModel"
+            type="xyz.dokup.talknotifier.viewmodel.ListingActivityViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:title="@string/events"
+            app:popupTheme="@style/My.Toolbar"
+            android:elevation="4dp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/event_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/toolbar"
+            android:layout_above="@+id/notify_btn"/>
+
+        <Button
+            android:id="@+id/notify_btn"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_margin="30dp"
+            android:background="@drawable/primary_5dp_rounded_corner"
+            android:text="登壇通知！"
+            android:textColor="@color/md_white_1000"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            android:layout_alignParentBottom="true"
+            android:onClick="@{viewModel.onNotifyClick}"/>
+
+    </RelativeLayout>
+</layout>

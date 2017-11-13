@@ -16,7 +16,7 @@ public class EventViewModel constructor(
     private var observableEvent: ObservableField<Event> = ObservableField(event)
 
     fun onItemClick(view: View) {
-        navigator.NavigateToListing()
+        navigator.NavigateToListing(event.id)
     }
 
 }

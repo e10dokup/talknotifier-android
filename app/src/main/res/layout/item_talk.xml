@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="viewModel"
+            type="xyz.dokup.talknotifier.viewmodel.TalkViewModel" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_medium"
+        android:padding="@dimen/margin_medium"
+        android:background="@{viewModel.current ? @color/md_red_100 : @color/md_amber_100}"
+        android:elevation="4dp"
+        android:onClick="@{viewModel.onItemClick}">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{viewModel.talk.title}"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_large"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_small"
+            android:text="@{viewModel.talk.speaker}"
+            android:textSize="@dimen/text_medium"/>
+
+    </LinearLayout>
+</layout>
