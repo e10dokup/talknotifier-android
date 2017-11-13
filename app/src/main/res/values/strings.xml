@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">talknotifier</string>
+    <string name="app_name">とうだんくん</string>
+    <string name="settings">設定</string>
+    <string name="events">イベント一覧</string>
 </resources>
