@@ -22,5 +22,11 @@
             app:popupTheme="@style/My.Toolbar"
             android:elevation="4dp" />
 
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/event_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar" />
+
     </LinearLayout>
 </layout>

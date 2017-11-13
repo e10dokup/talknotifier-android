@@ -12,7 +12,7 @@ class Navigator @Inject constructor(activity: AppCompatActivity){
 
     private val activity = activity
 
-    fun NavigateToSetting() {
+    fun NavigateToListing() {
         // activity.go(Page.SETTING)
     }
 
