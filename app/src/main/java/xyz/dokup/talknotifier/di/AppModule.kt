@@ -9,6 +9,7 @@ import dagger.Provides
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import xyz.dokup.talknotifier.R
 import xyz.dokup.talknotifier.api.service.TalkNotifierService
 import xyz.dokup.talknotifier.di.constant.PrefKeys
 import xyz.dokup.talknotifier.di.provider.OrmaProvider
@@ -47,7 +48,7 @@ class AppModule(private val context: Context) {
     @Provides
     fun provideTalkNotifierService(): TalkNotifierService {
         return Retrofit.Builder()
-                .baseUrl("https://10-dot-talknorifier.appspot.com/")
+                .baseUrl(context.getString(R.string.base_url))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(createGson()))
                 .build().create(TalkNotifierService::class.java)
