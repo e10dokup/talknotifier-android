@@ -15,6 +15,7 @@ class TalkViewModel constructor(
 
     private var observableTalk: ObservableField<Talk> = ObservableField(talk)
     var current = ObservableBoolean(false)
+    var done = ObservableBoolean(false)
 
     fun onItemClick(view: View) {
         onChangeCurrentTalk.invoke(this)

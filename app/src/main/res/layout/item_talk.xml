@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
     <data>
+        <import type="android.view.View"/>
         <variable
             name="viewModel"
             type="xyz.dokup.talknotifier.viewmodel.TalkViewModel" />
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:orientation="vertical"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_medium"
@@ -16,10 +16,13 @@
         android:onClick="@{viewModel.onItemClick}">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/title_text"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@{viewModel.talk.title}"
             android:textStyle="bold"
+            android:layout_toStartOf="@+id/done_image"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:textSize="@dimen/text_large"/>
 
         <TextView
@@ -27,7 +30,19 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_small"
             android:text="@{viewModel.talk.speaker}"
+            android:layout_below="@+id/title_text"
+            android:layout_toStartOf="@+id/done_image"
+            android:layout_marginEnd="@dimen/margin_medium"
             android:textSize="@dimen/text_medium"/>
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/done_image"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_done_30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:visibility="@{viewModel.done ? View.VISIBLE : View.GONE}"/>
+
+    </RelativeLayout>
 </layout>
